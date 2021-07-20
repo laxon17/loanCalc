@@ -13,8 +13,9 @@ function calculateResults(e) {
     const loanAmount = document.querySelector('#loanAmount')
     const interest = document.querySelector('#interest')
     const yearsRepay = document.querySelector('#yearsToRepay').value
-    const monthlySum = loanAmount.value / (12 * yearsRepay)
-    // monthly calculate
+    const interestSum = loanAmount.value * (interest.value / 100)
+    const totalSum = +loanAmount.value + +interestSum
+    const monthlySum = totalSum / (12 * yearsRepay)
     setTimeout(() => {
         document.querySelector('.loading-image').style.display = 'none'
     }, 3000);
@@ -29,11 +30,9 @@ function calculateResults(e) {
                 monthlyItem.innerText = `Monthly Payment: ${monthlySum.toFixed(2)}`
                 list.appendChild(monthlyItem)
                 // interest calculate
-                const interestSum = loanAmount.value * (interest.value / 100)
                 interestItem.innerText = `Total interest: ${interestSum.toFixed(2)}`
                 list.appendChild(interestItem)
                 // total
-                const totalSum = +loanAmount.value + +interestSum
                 totalItem.innerText = `Total amount: ${totalSum.toFixed(2)}`
                 list.appendChild(totalItem)
             }
